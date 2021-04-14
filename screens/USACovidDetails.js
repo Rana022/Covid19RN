@@ -6,16 +6,19 @@ import { globalStyles } from '../styles/GlobalStyles'
 export default function CountryCovidDetails({route}) {
   const dt = route.params.lastUpdatedApify
   return (
-    <View style={styles.container}>
-      <View style={styles.child}>
+    <View style={globalStyles.container}>
+      <View style={globalStyles.dChild}>
+      <View>
+          <Text style={globalStyles.dTitle}>{route.params.name}</Text>
+        </View>
       <Text>
-        <Text style={styles.heading}>Range: </Text>
-        <Text style={styles.result}>{route.params.range}</Text>
+        <Text style={globalStyles.heading}>Range: </Text>
+        <Text style={globalStyles.result}>{route.params.range}</Text>
       </Text>
 
       <Text>
-        <Text style={styles.heading}>Cases Reported: </Text>
-        <Text style={styles.result}>{route.params.casesReported}</Text>
+        <Text style={globalStyles.heading}>Cases Reported: </Text>
+        <Text style={globalStyles.result}>{route.params.casesReported}</Text>
       </Text>
 
       </View>
@@ -24,29 +27,5 @@ export default function CountryCovidDetails({route}) {
 }
 
 const styles = StyleSheet.create({
-  container:{
-    flex: 1,
-    padding: 20,
-    justifyContent: 'center'
-  },
-  child:{
-    minWidth: '100%',
-    minHeight: '50%',
-    paddingHorizontal: 8,
-    paddingVertical: 6,
-    borderRadius: 4,
-    marginHorizontal: "1%",
-    marginBottom: 6,
-    textAlign: "center",
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  heading:{
-    fontSize: 14,
-    fontFamily: 'nunito-b'
-  },
-  result:{
-    fontFamily: 'nunito-li',
-    fontSize: 14
-  }
+  
 })

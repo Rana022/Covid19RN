@@ -9,6 +9,8 @@ import {
    ActivityIndicator
 } from 'react-native';
 import Moment from 'moment';
+import { globalStyles } from '../styles/GlobalStyles';
+
 
 
 export default function Home({navigation}) {
@@ -26,35 +28,65 @@ export default function Home({navigation}) {
   
   if(isLoading){
     return(
-      <View style={styles.loading}>
+      <View style={globalStyles.loading}>
       <ActivityIndicator size="large" color="#00ff00" />
     </View>
     )
   }else{
     return (
       <ScrollView>
-        <View style={styles.container}>
+        <View style={globalStyles.container}>
           <View style={[styles.firstChild, {minHeight: 150, alignItems: 'center', justifyContent: 'center'}]}>
           <Text>
-            <Text style={styles.heading}>Active Cases: </Text>
-            <Text style={styles.result}>{data.activeCases}</Text>
+            <Text style={globalStyles.heading}>Active Cases: </Text>
+            <Text style={globalStyles.result}>{data.activeCases}</Text>
          </Text>
 
          <Text>
-            <Text style={styles.heading}>Active Cases: </Text>
-            <Text style={styles.result}>{data.activeCasesNew}</Text>
+            <Text style={globalStyles.heading}>Active Cases: </Text>
+            <Text style={globalStyles.result}>{data.activeCasesNew}</Text>
          </Text>
 
          <Text>
-            <Text style={styles.heading}>Recovered: </Text>
-            <Text style={styles.result}>{data.recovered}</Text>
+            <Text style={globalStyles.heading}>Recovered: </Text>
+            <Text style={globalStyles.result}>{data.recovered}</Text>
+         </Text>
+
+         <Text>
+            <Text style={globalStyles.heading}>Recovered New: </Text>
+            <Text style={globalStyles.result}>{data.recoveredNew}</Text>
+         </Text>
+
+         <Text>
+            <Text style={globalStyles.heading}>Deaths: </Text>
+            <Text style={globalStyles.result}>{data.deaths}</Text>
+         </Text>
+
+         <Text>
+            <Text style={globalStyles.heading}>Deaths New: </Text>
+            <Text style={globalStyles.result}>{data.deathsNew}</Text>
+         </Text>
+
+         <Text>
+            <Text style={globalStyles.heading}>Previous Day Tests: </Text>
+            <Text style={globalStyles.result}>{data.previousDayTests}</Text>
+         </Text>
+
+         <Text>
+            <Text style={globalStyles.heading}>Total Cases: </Text>
+            <Text style={globalStyles.result}>{data.totalCases}</Text>
+         </Text>
+
+         <Text>
+            <Text style={globalStyles.heading}>Last Updated: </Text>
+            <Text style={globalStyles.result}>{Moment(data.lastUpdatedAtApify).startOf('day').fromNow()}</Text>
          </Text>
           </View>
         <FlatList
             data={data.regionData}
             keyExtractor={({ id }, index) => id}
             renderItem={({ item }) => (
-              <TouchableOpacity onPress={() => {navigation.navigate('IndiaDetails', item)}} style={styles.child}><Text>{item.region}</Text></TouchableOpacity>
+              <TouchableOpacity onPress={() => {navigation.navigate('IndiaDetails', item)}} style={globalStyles.child}><Text>{item.region}</Text></TouchableOpacity>
             )}
           />
         </View>
@@ -64,37 +96,6 @@ export default function Home({navigation}) {
 }
 
 const styles = StyleSheet.create({
-  container:{
-    flex: 1,
-    flexDirection: 'row',
-    flexWrap: "wrap",
-    padding: 10
-  },
-  child:{
-    flex: 1,
-    backgroundColor: '#fff',
-    paddingHorizontal: 8,
-    paddingVertical: 6,
-    borderRadius: 4,
-    alignSelf: "flex-start",
-    marginHorizontal: "1%",
-    marginBottom: 6,
-    minWidth: "100%",
-    textAlign: "center"
-  },
-  loading:{
-    flex: 1,
-    justifyContent: "center",
-    alignItems: 'center'
-  },
-  heading:{
-    fontSize: 14,
-    fontFamily: 'nunito-b'
-  },
-  result:{
-    fontFamily: 'nunito-l',
-    fontSize: 14
-  },
   firstChild:{
     flex: 1,
     paddingHorizontal: 8,

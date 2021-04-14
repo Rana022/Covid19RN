@@ -12,13 +12,14 @@ import Moment from 'moment';
 import { globalStyles } from '../styles/GlobalStyles';
 
 
+
 export default function Home({navigation}) {
 
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch('https://api.apify.com/v2/key-value-stores/moxA3Q0aZh5LosewB/records/LATEST?disableRedirect=true?token=zMBRDmu86bLs4KKBrGvypaQmS')
+    fetch('https://api.apify.com/v2/key-value-stores/1brJ0NLbQaJKPTWMO/records/LATEST?disableRedirect=true?token=zMBRDmu86bLs4KKBrGvypaQmS')
       .then((response) => response.json())
       .then((json) => setData(json))
       .catch((error) => console.error(error))
@@ -37,25 +38,40 @@ export default function Home({navigation}) {
         <View style={globalStyles.container}>
           <View style={[styles.firstChild, {minHeight: 150, alignItems: 'center', justifyContent: 'center'}]}>
           <Text>
-            <Text style={globalStyles.heading}>Total Cases: </Text>
-            <Text style={globalStyles.result}>{data.totalCases}</Text>
+            <Text style={globalStyles.heading}>Infected: </Text>
+            <Text style={globalStyles.result}>{data.infected}</Text>
          </Text>
 
          <Text>
-            <Text style={globalStyles.heading}>Total Deaths: </Text>
-            <Text style={globalStyles.result}>{data.totalDeaths}</Text>
+            <Text style={globalStyles.heading}>Tested: </Text>
+            <Text style={globalStyles.result}>{data.tested}</Text>
+         </Text>
+
+         <Text>
+            <Text style={globalStyles.heading}>Recovered: </Text>
+            <Text style={globalStyles.result}>{data.recovered}</Text>
+         </Text>
+
+         <Text>
+            <Text style={globalStyles.heading}>Recovered: </Text>
+            <Text style={globalStyles.result}>{data.recovered}</Text>
+         </Text>
+
+         <Text>
+            <Text style={globalStyles.heading}>Deceased: </Text>
+            <Text style={globalStyles.result}>{data.deceased}</Text>
          </Text>
 
          <Text>
             <Text style={globalStyles.heading}>Last Updated: </Text>
-            <Text style={globalStyles.result}>{Moment(data.lastUpdatedAtSource).startOf('day').fromNow()}</Text>
+            <Text style={globalStyles.result}>{Moment(data.lastUpdatedAtApify).startOf('day').fromNow()}</Text>
          </Text>
           </View>
         <FlatList
-            data={data.casesByState}
+            data={data.infectedByRegion}
             keyExtractor={({ id }, index) => id}
             renderItem={({ item }) => (
-              <TouchableOpacity onPress={() => {navigation.navigate('USACovidDetails', item)}} style={globalStyles.child}><Text>{item.name}</Text></TouchableOpacity>
+              <TouchableOpacity onPress={() => {navigation.navigate('RussiaDetails', item)}} style={globalStyles.child}><Text>{item.region}</Text></TouchableOpacity>
             )}
           />
         </View>
