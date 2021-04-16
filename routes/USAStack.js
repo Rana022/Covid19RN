@@ -19,7 +19,15 @@ function App() {
           }
         } }
          />
-        <Stack.Screen name="USACovidDetails" component={USACovidDetails} />
+        <Stack.Screen 
+        name="USACovidDetails" 
+        component={USACovidDetails} 
+        options={
+          {
+            title: 'Details'
+          }
+        }
+        />
       </Stack.Navigator>
   );
 }

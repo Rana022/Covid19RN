@@ -61,6 +61,21 @@ import {
              <View style={styles.drawItem}>
               <Image
                   style={{width: 25, height: 25}}
+                  source={require('../assets/img/canada.png')}
+             />
+             <DrawerItem
+                 style={{flex: 5}}
+                  label="Canada"
+                  onPress={() => {
+                     // Navigate using the `navigation` prop that you received
+                     props.navigation.navigate('CanadaStack');
+                   }}
+               />
+             </View>
+
+             <View style={styles.drawItem}>
+              <Image
+                  style={{width: 25, height: 25}}
                   source={require('../assets/img/india.png')}
              />
              <DrawerItem
@@ -84,6 +99,36 @@ import {
                   onPress={() => {
                      // Navigate using the `navigation` prop that you received
                      props.navigation.navigate('RussiaStack');
+                   }}
+               />
+             </View>
+
+             <View style={styles.drawItem}>
+              <Image
+                  style={{width: 25, height: 25}}
+                  source={require('../assets/img/spain.png')}
+             />
+             <DrawerItem
+                 style={{flex: 5}}
+                  label="Spain"
+                  onPress={() => {
+                     // Navigate using the `navigation` prop that you received
+                     props.navigation.navigate('SpainStack');
+                   }}
+               />
+             </View>
+
+             <View style={styles.drawItem}>
+              <Image
+                  style={{width: 25, height: 25}}
+                  source={require('../assets/img/info.png')}
+             />
+             <DrawerItem
+                 style={{flex: 5}}
+                  label="About"
+                  onPress={() => {
+                     // Navigate using the `navigation` prop that you received
+                     props.navigation.navigate('AboutStack');
                    }}
                />
              </View>

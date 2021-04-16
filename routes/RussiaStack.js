@@ -19,7 +19,15 @@ function App() {
           }
         } }
          />
-        <Stack.Screen name="RussiaDetails" component={RussiaDetails} />
+        <Stack.Screen 
+        name="RussiaDetails" 
+        component={RussiaDetails} 
+        options={
+          {
+            title: 'Details'
+          }
+        }
+        />
       </Stack.Navigator>
   );
 }

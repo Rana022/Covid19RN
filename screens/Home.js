@@ -6,7 +6,8 @@ import {
    View, 
    TouchableOpacity, 
    FlatList, 
-   ActivityIndicator
+   ActivityIndicator,
+   Card
 } from 'react-native';
 import { globalStyles } from '../styles/GlobalStyles';
 
@@ -23,16 +24,17 @@ export default function Home({navigation}) {
       .catch((error) => console.error(error))
       .finally(() => setLoading(false));
   }, []);
+
   
   if(isLoading){
     return(
       <View style={globalStyles.loading}>
-      <ActivityIndicator size="large" color="#00ff00" />
+      <ActivityIndicator size="large" color="#6A2122" />
     </View>
     )
   }else{
     return (
-      <ScrollView>
+         <ScrollView>
         <View style={globalStyles.container}>
         <FlatList
             data={data}
@@ -42,7 +44,7 @@ export default function Home({navigation}) {
             )}
           />
         </View>
-      </ScrollView>
+      </ScrollView>      
     );
   }
 }

@@ -3,8 +3,8 @@ import { StyleSheet } from 'react-native';
 export const globalStyles = StyleSheet.create({
     container:{
         flex: 1,
-        flexDirection: 'row',
         flexWrap: "wrap",
+        paddingBottom: 100
       },
       child:{
         flex: 1,

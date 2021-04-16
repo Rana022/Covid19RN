@@ -29,7 +29,7 @@ export default function Home({navigation}) {
   if(isLoading){
     return(
       <View style={globalStyles.loading}>
-      <ActivityIndicator size="large" color="#00ff00" />
+      <ActivityIndicator size="large" color="#6A2122" />
     </View>
     )
   }else{

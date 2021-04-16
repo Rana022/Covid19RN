@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import Moment from 'moment';
 import { globalStyles } from '../styles/GlobalStyles'
 
-export default function CountryCovidDetails({route}) {
+export default function USADetails({route}) {
   const dt = route.params.lastUpdatedApify
   return (
     <View style={globalStyles.container}>

@@ -19,7 +19,7 @@ export default function Home({navigation}) {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch('https://api.apify.com/v2/key-value-stores/1brJ0NLbQaJKPTWMO/records/LATEST?disableRedirect=true?token=zMBRDmu86bLs4KKBrGvypaQmS')
+    fetch('https://api.apify.com/v2/key-value-stores/lluBbYoQVN65R3BGO/records/LATEST?disableRedirect=true?token=zMBRDmu86bLs4KKBrGvypaQmS')
       .then((response) => response.json())
       .then((json) => setData(json))
       .catch((error) => console.error(error))
@@ -43,18 +43,13 @@ export default function Home({navigation}) {
          </Text>
 
          <Text>
+            <Text style={globalStyles.heading}>Recovered: </Text>
+            <Text style={globalStyles.result}>{data.recovered}</Text>
+         </Text>
+
+         <Text>
             <Text style={globalStyles.heading}>Tested: </Text>
             <Text style={globalStyles.result}>{data.tested}</Text>
-         </Text>
-
-         <Text>
-            <Text style={globalStyles.heading}>Recovered: </Text>
-            <Text style={globalStyles.result}>{data.recovered}</Text>
-         </Text>
-
-         <Text>
-            <Text style={globalStyles.heading}>Recovered: </Text>
-            <Text style={globalStyles.result}>{data.recovered}</Text>
          </Text>
 
          <Text>
@@ -63,15 +58,45 @@ export default function Home({navigation}) {
          </Text>
 
          <Text>
+            <Text style={globalStyles.heading}>Hospitalised: </Text>
+            <Text style={globalStyles.result}>{data.hospitalised}</Text>
+         </Text>
+
+         <Text>
+            <Text style={globalStyles.heading}>ICU: </Text>
+            <Text style={globalStyles.result}>{data.ICU}</Text>
+         </Text>
+
+         <Text>
+            <Text style={globalStyles.heading}>Newly Deceased: </Text>
+            <Text style={globalStyles.result}>{data.newlyDeceased}</Text>
+         </Text>
+
+         <Text>
+            <Text style={globalStyles.heading}>Newly Hospitalised: </Text>
+            <Text style={globalStyles.result}>{data.newlyHospitalised}</Text>
+         </Text>
+
+         <Text>
+            <Text style={globalStyles.heading}>Newly In ICU: </Text>
+            <Text style={globalStyles.result}>{data.NewlyInICU}</Text>
+         </Text>
+
+         <Text>
+            <Text style={globalStyles.heading}>Daily Infected: </Text>
+            <Text style={globalStyles.result}>{data.dailyInfected}</Text>
+         </Text>
+
+         <Text>
             <Text style={globalStyles.heading}>Last Updated: </Text>
-            <Text style={globalStyles.result}>{Moment(data.lastUpdatedAtApify).startOf('day').fromNow()}</Text>
+            <Text style={globalStyles.result}>{Moment(data.lastUpdatedAtSource).startOf('day').fromNow()}</Text>
          </Text>
           </View>
         <FlatList
-            data={data.infectedByRegion}
+            data={data.regions}
             keyExtractor={({ id }, index) => id}
             renderItem={({ item }) => (
-              <TouchableOpacity onPress={() => {navigation.navigate('RussiaDetails', item)}} style={globalStyles.child}><Text>{item.region}</Text></TouchableOpacity>
+              <TouchableOpacity onPress={() => {navigation.navigate('SpainDetails', item)}} style={globalStyles.child}><Text>{item.name}</Text></TouchableOpacity>
             )}
           />
         </View>

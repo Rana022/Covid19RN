@@ -1,27 +1,27 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import IndiaRegions from '../screens/IndiaRegions';
-import IndiaDetails from '../screens/IndiaRegionDetails';
+import SpainRegions from '../screens/SpainRegions';
+import SpainDetails from '../screens/SpainDetails';
 import Header from '../screens/shared_screens/Header';
 
 const Stack = createStackNavigator();
 
 function App() {
   return (
-      <Stack.Navigator initialRouteName="IndiaRegions">
+      <Stack.Navigator initialRouteName="SpainRegions">
         <Stack.Screen
-         name="IndiaRegions" 
-         component={IndiaRegions}
+         name="SpainRegions" 
+         component={SpainRegions}
          options={ ({navigation}) => {
           return {
-           headerTitle: () => <Header navigation={navigation} title='India Regions' />
+           headerTitle: () => <Header navigation={navigation} title='Spain Regions' />
           }
         } }
          />
         <Stack.Screen 
-        name="IndiaDetails" 
-        component={IndiaDetails}
+        name="SpainDetails" 
+        component={SpainDetails}
         options={
           {
             title: 'Details'

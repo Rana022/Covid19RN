@@ -1,7 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import Navigation from './routes/DrawerNavigation';
+import { View, StyleSheet } from 'react-native';
+import {
+  AdMobBanner,
+  AdMobInterstitial,
+  setTestDeviceIDAsync
+} from "expo-ads-admob";
 
 const getFonts = Font.loadAsync({
   'nunito-r': require('./assets/fonts/Nunito-Regular.ttf'),
@@ -15,9 +21,30 @@ export default function App() {
 
   const [loadFonts, setLoadFonts] = useState(false)
 
+  useEffect(() => {
+    setTestDeviceIDAsync("EMULATOR");
+    getInterStitialAds();
+  }, []);
+
+  const getInterStitialAds = async () => {
+    await AdMobInterstitial.setAdUnitID('ca-app-pub-3940256099942544/1033173712'); // Test ID, Replace with your-admob-unit-id
+    await AdMobInterstitial.requestAdAsync({ servePersonalizedAds: true});
+    await AdMobInterstitial.showAdAsync();
+    };
+
   if(loadFonts){
     return(
-      <Navigation />
+      <View style={{flex:1}}>
+         <Navigation />
+      <View style={styles.ads}>
+            <AdMobBanner
+            bannerSize="smartBannerPortrait"
+            adUnitID="ca-app-pub-3940256099942544/6300978111"
+            servePersonalizedAds={false}
+            onDidFailToReceiveAdWithError={(e) => console.log(e)}
+          />
+      </View>
+      </View>
     )
   }else{
     return(
@@ -29,3 +56,11 @@ export default function App() {
     )
   }
 }
+
+const styles = StyleSheet.create({
+  ads:{
+    position: 'absolute',
+    left: 0,
+    bottom: 0
+  }
+})
