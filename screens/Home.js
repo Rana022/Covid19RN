@@ -6,8 +6,7 @@ import {
    View, 
    TouchableOpacity, 
    FlatList, 
-   ActivityIndicator,
-   Card
+   ActivityIndicator
 } from 'react-native';
 import { globalStyles } from '../styles/GlobalStyles';
 
@@ -38,7 +37,7 @@ export default function Home({navigation}) {
         <View style={globalStyles.container}>
         <FlatList
             data={data}
-            keyExtractor={({ id }, index) => id}
+            keyExtractor={item => item.country}
             renderItem={({ item }) => (
               <TouchableOpacity onPress={() => {navigation.navigate('CountryCovidDetails', item)}} style={globalStyles.child}><Text>{item.country}</Text></TouchableOpacity>
             )}

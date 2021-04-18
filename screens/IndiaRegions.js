@@ -84,7 +84,7 @@ export default function Home({navigation}) {
           </View>
         <FlatList
             data={data.regionData}
-            keyExtractor={({ id }, index) => id}
+            keyExtractor={item => item.region}
             renderItem={({ item }) => (
               <TouchableOpacity onPress={() => {navigation.navigate('IndiaDetails', item)}} style={globalStyles.child}><Text>{item.region}</Text></TouchableOpacity>
             )}

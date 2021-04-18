@@ -53,7 +53,7 @@ export default function Home({navigation}) {
           </View>
         <FlatList
             data={data.casesByState}
-            keyExtractor={({ id }, index) => id}
+            keyExtractor={item => item.name}
             renderItem={({ item }) => (
               <TouchableOpacity onPress={() => {navigation.navigate('USACovidDetails', item)}} style={globalStyles.child}><Text>{item.name}</Text></TouchableOpacity>
             )}

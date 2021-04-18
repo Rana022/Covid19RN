@@ -94,7 +94,7 @@ export default function Home({navigation}) {
           </View>
         <FlatList
             data={data.regions}
-            keyExtractor={({ id }, index) => id}
+            keyExtractor={item => item.name}
             renderItem={({ item }) => (
               <TouchableOpacity onPress={() => {navigation.navigate('SpainDetails', item)}} style={globalStyles.child}><Text>{item.name}</Text></TouchableOpacity>
             )}

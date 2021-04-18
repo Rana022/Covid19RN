@@ -53,7 +53,7 @@ export default function CanadaRegions({navigation}) {
           </View>
         <FlatList
             data={data.infectedByRegion}
-            keyExtractor={({ id }, index) => id}
+            keyExtractor={item => item.region}
             renderItem={({ item }) => (
               <TouchableOpacity onPress={() => {navigation.navigate('CanadaDetails', item)}} style={globalStyles.child}><Text>{item.region}</Text></TouchableOpacity>
             )}
