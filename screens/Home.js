@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { 
    StyleSheet,
    Text, 
-   ScrollView, 
    View, 
    TouchableOpacity, 
    FlatList, 
@@ -15,15 +14,27 @@ export default function Home({navigation}) {
 
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
+  const [refreshing, setRefreshing] = useState(false);
+
+  
 
   useEffect(() => {
-    fetch('https://api.apify.com/v2/key-value-stores/tVaYRsPHLjNdNBu7S/records/LATEST?disableRedirect=true?token=zMBRDmu86bLs4KKBrGvypaQmS')
-      .then((response) => response.json())
-      .then((json) => setData(json))
-      .catch((error) => console.error(error))
-      .finally(() => setLoading(false));
+    loadData()
   }, []);
 
+  const onRefresh = () => {
+    setRefreshing(true);
+    loadData();
+    setRefreshing(false);
+  }
+
+  const loadData = () => {
+    return fetch('https://api.apify.com/v2/key-value-stores/tVaYRsPHLjNdNBu7S/records/LATEST?disableRedirect=true?token=zMBRDmu86bLs4KKBrGvypaQmS')
+    .then((response) => response.json())
+    .then((json) => setData(json))
+    .catch((error) => console.error(error))
+    .finally(() => setLoading(false));
+  }
   
   if(isLoading){
     return(
@@ -33,9 +44,10 @@ export default function Home({navigation}) {
     )
   }else{
     return (
-         <ScrollView>
         <View style={globalStyles.container}>
         <FlatList
+            onRefresh={onRefresh}
+            refreshing={refreshing}
             data={data}
             keyExtractor={item => item.country}
             renderItem={({ item }) => (
@@ -43,7 +55,6 @@ export default function Home({navigation}) {
             )}
           />
         </View>
-      </ScrollView>      
     );
   }
 }

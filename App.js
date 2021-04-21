@@ -3,33 +3,43 @@ import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import Navigation from './routes/DrawerNavigation';
 import { LogBox } from 'react-native';
-
-const getFonts = Font.loadAsync({
-  'nunito-r': require('./assets/fonts/Nunito-Regular.ttf'),
-  'nunito-b': require('./assets/fonts/Nunito-Bold.ttf'),
-  'nunito-l': require('./assets/fonts/Nunito-Light.ttf'),
-  'nunito-i': require('./assets/fonts/Nunito-Italic.ttf'),
-  'nunito-li': require('./assets/fonts/Nunito-LightItalic.ttf')
-})
+import netConnection from './functions/netInfo';
+import OffNetScreen from './screens/offNet';
 
 export default function App() {
 
+  const [connectionStatus, setConnectionStatus] = useState(false);
+  netConnection().then(res => setConnectionStatus(res));
+
+  const getFonts = Font.loadAsync({
+    'nunito-r': require('./assets/fonts/Nunito-Regular.ttf'),
+    'nunito-b': require('./assets/fonts/Nunito-Bold.ttf'),
+    'nunito-l': require('./assets/fonts/Nunito-Light.ttf'),
+    'nunito-i': require('./assets/fonts/Nunito-Italic.ttf'),
+    'nunito-li': require('./assets/fonts/Nunito-LightItalic.ttf')
+  });
+
   const [loadFonts, setLoadFonts] = useState(false)
+
   useEffect(() => {
     LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
   }, []);
-
-  if(loadFonts === true){
-    return(
-         <Navigation />
-    )
+//first logic
+  if(connectionStatus === true){
+    if(loadFonts === true){
+      return(
+           <Navigation />
+      )
+    }else{
+      return(
+        <AppLoading
+            startAsync={getFonts}
+            onFinish={() => setLoadFonts(true)}
+            onError={console.warn}
+          />
+      )
+    }
   }else{
-    return(
-      <AppLoading
-          startAsync={getFonts}
-          onFinish={() => setLoadFonts(true)}
-          onError={console.warn}
-        />
-    )
+    return(<OffNetScreen onCheck={netConnection} />)
   }
 }
