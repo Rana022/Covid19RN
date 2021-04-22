@@ -1,4 +1,5 @@
 import React from 'react';
+import {Restart} from 'fiction-expo-restart';
 import { 
    StyleSheet,
    Text, 
@@ -130,6 +131,18 @@ import {
                      // Navigate using the `navigation` prop that you received
                      props.navigation.navigate('AboutStack');
                    }}
+               />
+             </View>
+
+             <View style={styles.drawItem}>
+              <Image
+                  style={{width: 25, height: 25}}
+                  source={require('../assets/img/arrows.png')}
+             />
+             <DrawerItem
+                 style={{flex: 5}}
+                  label="Restart Application"
+                  onPress={Restart}
                />
              </View>
 

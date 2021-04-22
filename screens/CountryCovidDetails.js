@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Linking, Text, View } from 'react-native';
 import Moment from 'moment';
 import { globalStyles } from '../styles/GlobalStyles'
 
@@ -32,14 +32,15 @@ export default function CountryCovidDetails({route}) {
 
       <Text>
         <Text style={globalStyles.heading}>Last Updated: </Text>
-        <Text style={globalStyles.result}>{Moment(dt).startOf('day').fromNow()}</Text>
+        <Text style={globalStyles.result}>{Moment.utc(dt).startOf('hour').fromNow()}</Text>
+      </Text>
+
+      <Text style={{color: 'blue'}}
+      onPress={() => Linking.openURL(route.params.sourceUrl)}>
+        Data Source
       </Text>
       
       </View>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  
-})

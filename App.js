@@ -10,6 +10,7 @@ export default function App() {
 
   const [connectionStatus, setConnectionStatus] = useState(false);
   netConnection().then(res => setConnectionStatus(res));
+  const [loadFonts, setLoadFonts] = useState(false)
 
   const getFonts = Font.loadAsync({
     'nunito-r': require('./assets/fonts/Nunito-Regular.ttf'),
@@ -18,8 +19,6 @@ export default function App() {
     'nunito-i': require('./assets/fonts/Nunito-Italic.ttf'),
     'nunito-li': require('./assets/fonts/Nunito-LightItalic.ttf')
   });
-
-  const [loadFonts, setLoadFonts] = useState(false)
 
   useEffect(() => {
     LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
@@ -40,6 +39,6 @@ export default function App() {
       )
     }
   }else{
-    return(<OffNetScreen onCheck={netConnection} />)
+    return(<OffNetScreen />)
   }
 }

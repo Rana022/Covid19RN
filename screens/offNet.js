@@ -1,12 +1,13 @@
-  
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
+import {Restart} from 'fiction-expo-restart';
 
-export default function app(props) {
+export default function app() {
     return(
       <View style={styles.container}>
         <Text>No Internet Connection</Text>
-       <Button color="#6A2122" title="Reload" onPress={props.onCheck} />
+        <Text>Please Check and Reload</Text>
+       <Button style={styles.btn} color="#6A2122" title="Reload" onPress={Restart} />
         </View>
     );
   }

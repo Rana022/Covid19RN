@@ -6,7 +6,8 @@ import {
    View, 
    TouchableOpacity, 
    FlatList, 
-   ActivityIndicator
+   ActivityIndicator,
+   Linking
 } from 'react-native';
 import Moment from 'moment';
 import { globalStyles } from '../styles/GlobalStyles';
@@ -64,8 +65,14 @@ export default function Home({navigation}) {
 
          <Text>
             <Text style={globalStyles.heading}>Last Updated: </Text>
-            <Text style={globalStyles.result}>{Moment(data.lastUpdatedAtApify).startOf('day').fromNow()}</Text>
+            <Text style={globalStyles.result}>{Moment.utc(data.lastUpdatedAtApify).startOf('hour').fromNow()}</Text>
          </Text>
+
+         <Text style={{color: 'blue'}}
+      onPress={() => Linking.openURL(data.sourceUrl)}>
+        Data Source
+      </Text>
+
           </View>
         <FlatList
             data={data.infectedByRegion}

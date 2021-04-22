@@ -38,7 +38,3 @@ export default function CountryCovidDetails({route}) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
- 
-})

@@ -1,6 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import Moment from 'moment';
+import { Linking, Text, View } from 'react-native';
 import { globalStyles } from '../styles/GlobalStyles';
 
 export default function CountryCovidDetails({route}) {
@@ -40,11 +39,9 @@ export default function CountryCovidDetails({route}) {
         <Text style={globalStyles.heading}>New Deceased: </Text>
         <Text style={globalStyles.result}>{route.params.newDeceased}</Text>
       </Text>
+
+      
       </View>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
- 
-})
